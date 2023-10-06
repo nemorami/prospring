@@ -1,25 +1,12 @@
 package com.apress.prospring6.two
 
-import com.apress.prospring6.two.decoupled.HelloWorldMessageProvider
-import com.apress.prospring6.two.decoupled.MessageProvider
-import com.apress.prospring6.two.decoupled.MessageRenderer
-import com.apress.prospring6.two.decoupled.StandardOutMessageRenderer
+import com.apress.prospring6.two.decoupled.*
 
 fun main(args: Array<String>) {
-// Listing 2-10
-    val mr: MessageRenderer = StandardOutMessageRenderer()
-    val mp: MessageProvider = HelloWorldMessageProvider()
+    val mr: MessageRenderer = MessageSupportFactory.renderer
+        ?: throw IllegalArgumentException("Service of type 'MessageRenderer' was not found!")
+    val mp: MessageProvider = MessageSupportFactory.provider
+        ?: throw IllegalArgumentException("Service of type 'MessageProvider' was not found!")
     mr.messageProvider = mp
     mr.render()
-//    if (args.size > 0) {
-//        println(args[0])
-//    } else {
-//        println("Hello World!")
-//    }
-
-
-
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-   // println("Program arguments: ${args.joinToString()}")
 }
