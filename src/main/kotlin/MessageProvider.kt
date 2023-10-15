@@ -21,7 +21,7 @@ class HelloWorldMessageProvider : MessageProvider {
 
 class StandardOutMessageRenderer() : MessageRenderer {
     override fun render() {
-        println(messageProvider?.message ?: throw RuntimeException("You must set the property messageProvier of class: ${StandardOutMessageRenderer::class.java.name}"))
+        println(messageProvider?.message ?: throw RuntimeException("You must set the property messageProvider of class: ${StandardOutMessageRenderer::class.java.name}"))
     }
 
     override var messageProvider: MessageProvider? = null
