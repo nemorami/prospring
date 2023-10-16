@@ -1,3 +1,5 @@
+//import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
 }
@@ -10,6 +12,11 @@ repositories {
     mavenCentral()
 }
 
+//dependencyManagement {
+//    imports {
+//        mavenBom SpringBootPlugin.BOM_COORDINATES
+//    }
+//}
 dependencies {
     implementation 'org.springframework:spring-context:6.0.12'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
