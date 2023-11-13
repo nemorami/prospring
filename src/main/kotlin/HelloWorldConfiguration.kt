@@ -3,11 +3,13 @@ import com.apress.prospring6.two.decoupled.MessageProvider
 import com.apress.prospring6.two.decoupled.MessageRenderer
 import com.apress.prospring6.two.decoupled.StandardOutMessageRenderer
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 @Configuration
+//@ComponentScan
 open class HelloWorldConfiguration {
-    @Bean
+    @Bean // equivalent to <bean id="provider" class=".."/>
     open fun provider(): MessageProvider {
         return HelloWorldMessageProvider()
     }

@@ -1,15 +1,25 @@
 
 package com.apress.prospring6.two.decoupled
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+
 interface MessageProvider {
    val message: String?
 }
 
-interface MessageRenderer {
+interface Container {
+    fun getDependency(key: String): Any?
+}
+interface ManagedComponent {
+    fun performLookup(container: Container)
+}
+interface MessageRenderer : ManagedComponent {
     fun render()
     var messageProvider: MessageProvider?
 }
 
+@Component("provider") // check: default name
 class HelloWorldMessageProvider : MessageProvider {
     init {
         println(" --> HelloWorldMessageProvider: constructor called")
@@ -18,18 +28,29 @@ class HelloWorldMessageProvider : MessageProvider {
     override val message: String
         get() = "Hello World!"
 }
-
-class StandardOutMessageRenderer() : MessageRenderer {
+@Component("renderer")
+class StandardOutMessageRenderer(override var messageProvider: MessageProvider? = null) : MessageRenderer {
+    /* Listing 3-21 */
+//    override var messageProvider: MessageProvider? = null
+//        @Autowired set(value) {
+//            println(" ~~ Injection dependency using setter~~")
+//            field = value
+//        }
     override fun render() {
         println(messageProvider?.message ?: throw RuntimeException("You must set the property messageProvider of class: ${StandardOutMessageRenderer::class.java.name}"))
     }
 
-    override var messageProvider: MessageProvider? = null
-        //get() = TODO("Not yet implemented")
-        set(value) {
-            field = value
-            println(" --> StandardOutMessageRenderer: setting the provider")
-        }
+//    override var messageProvider: MessageProvider? = null
+//        //get() = TODO("Not yet implemented")
+//        set(value) {
+//            field = value
+//            println(" --> StandardOutMessageRenderer: setting the provider")
+//        }
+//
+    override fun performLookup(container: Container) {
+        messageProvider = container.getDependency("provider") as MessageProvider
+    }
+
     init {
         println(" --> StandardOutMessageRenderer: constructor called")
     }
