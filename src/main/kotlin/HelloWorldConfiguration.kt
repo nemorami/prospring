@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 open class HelloWorldConfiguration {
     @Bean // equivalent to <bean id="provider" class=".."/>
     open fun provider(): MessageProvider {
-        return HelloWorldMessageProvider()
+        return HelloWorldMessageProvider("Configurable Hello World")
     }
 
     @Bean // equivalent to <bean id="renderer" class=".."/>

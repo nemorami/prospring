@@ -2,6 +2,7 @@
 package com.apress.prospring6.two.decoupled
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 interface MessageProvider {
@@ -18,15 +19,15 @@ interface MessageRenderer : ManagedComponent {
     fun render()
     var messageProvider: MessageProvider?
 }
-
+// Listing 3-15 Configurable MessageProvider Implementation
 @Component("provider") // check: default name
-class HelloWorldMessageProvider : MessageProvider {
+internal class HelloWorldMessageProvider(@Value("Configurable message") override var message: String) : MessageProvider {
     init {
         println(" --> HelloWorldMessageProvider: constructor called")
     }
 
-    override val message: String
-        get() = "Hello World!"
+//    override val message: String
+//        get() = "Hello World!"
 }
 @Component("renderer")
 class StandardOutMessageRenderer(override var messageProvider: MessageProvider? = null) : MessageRenderer {
