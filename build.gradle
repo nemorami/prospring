@@ -18,11 +18,11 @@ repositories {
 //    }
 //}
 
-//jar {
-//    manifest {
-//        attributes 'Main-class': 'MainKt'
-//    }
-//}
+jar {
+    manifest {
+        attributes 'Main-class': 'MainKt'
+    }
+}
 dependencies {
     implementation 'org.springframework:spring-context:6.0.12'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
