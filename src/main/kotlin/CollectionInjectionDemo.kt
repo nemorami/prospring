@@ -4,6 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.function.Consumer
+//import jakarta.annotation. CHECK how to include jakarta?
 
 object CollectionInjectionDemo {
     @JvmStatic
@@ -18,8 +19,11 @@ object CollectionInjectionDemo {
 
 @Component
 internal class CollectingBean {
+    /*
     @Autowired
     @Qualifier("list")
+    */
+    @Resource(name="list")
     var songListResource: List<Song>? = null
 
     @Autowired
