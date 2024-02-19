@@ -19,11 +19,9 @@ object CollectionInjectionDemo {
 
 @Component
 internal class CollectingBean {
-    /*
     @Autowired
     @Qualifier("list")
-    */
-    @Resource(name="list")
+    //@Resource(name="list")
     var songListResource: List<Song>? = null
 
     @Autowired
