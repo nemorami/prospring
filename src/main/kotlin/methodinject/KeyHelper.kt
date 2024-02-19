@@ -1,3 +1,5 @@
+package methodinject
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Lookup
 import org.springframework.beans.factory.annotation.Qualifier
@@ -34,7 +36,7 @@ object MethodInjectionDemo {
         println("100000 gets took ${stopWatch.totalTimeMillis} ms")
     }
 }
-@Component("KeyHelper")
+@Component("keyHelper")
 @Scope("prototype")
 class KeyHelper {
     fun open() {
@@ -45,7 +47,7 @@ class KeyHelper {
 // Listing 3-31 Singleton bean Interface Type
 
 interface LockOpener {
-    fun createKeyOpener():KeyHelper?
+    fun createKeyOpener(): KeyHelper?
     fun openLock()
 }
 
@@ -63,7 +65,7 @@ internal class StandardLockOpener : LockOpener {
     }
 
     @Autowired
-    @Qualifier("KeyHelper")
+    @Qualifier("keyHelper")
     fun setKeyHelper(keyHelper: KeyHelper?) {
         keyOpener = keyHelper
     }
