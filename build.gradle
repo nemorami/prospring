@@ -1,7 +1,7 @@
 //import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
 }
 
 description 'Chapter 02: Hello World!'
@@ -24,7 +24,7 @@ jar {
     }
 }
 dependencies {
-    implementation 'org.springframework:spring-context:6.0.12'
+    implementation 'org.springframework:spring-context:6.1.4'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
@@ -33,9 +33,9 @@ test {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = '17'
+    kotlinOptions.jvmTarget = '21'
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = '17'
+    kotlinOptions.jvmTarget = '21'
 }
